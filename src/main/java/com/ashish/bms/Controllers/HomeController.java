@@ -172,15 +172,15 @@ public class HomeController {
     }
 
     @PostMapping("/likeBlog/{idString}/{like}")
-    public boolean likeBlog(@PathVariable String idString , @PathVariable int like) {
+    public Blog likeBlog(@PathVariable String idString , @PathVariable int like) {
         Blog blog = blogService.getBlogById(idString);
         if (blog == null) {
             System.out.println("Blog not found");
-            return false;
+            return null;
         }
         blog.setLikes(blog.getLikes() + like);
         blogService.updateBlog(blog);
-        return true;
+        return blog;
     }
 
     @PostMapping("/getBloggerByEmail/{email}")
